@@ -2,9 +2,9 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
-  router: {
-    base: '/cardealer/'
-  },
+  // router: {
+  //   base: '/cardealer/'
+  // },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Luxury Motorsport',
