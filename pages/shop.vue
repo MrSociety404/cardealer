@@ -61,7 +61,7 @@
     },
     async fetch() {
       this.cars = await fetch(
-        'https://mrsociety404.com/API/cardealer/cardealer-allcar.php'
+        'http://45.9.191.251:5500/car'
         ).then(res => res.json())
     },
     computed: {
