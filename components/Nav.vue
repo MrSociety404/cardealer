@@ -79,6 +79,7 @@
     height: 100vh;
     display: flex;
     z-index: 1000;
+    justify-content: flex-start;
     flex-direction: column;
     align-items: center;
     background: #f8f8f8;
