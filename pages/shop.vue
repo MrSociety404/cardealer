@@ -33,12 +33,12 @@
     <section class="catalogue" v-if="!$fetchState.pending">
       <CarCard 
         v-for="car in filteredCars"
-        :key="car.id"
-        :img="car.Image" 
-        :name="car.Model" 
-        :category="car.Type" 
-        :price="car.Price" 
-        :speed="car.Speed" 
+        :key="car._id"
+        :img="car.image" 
+        :name="car.name" 
+        :category="car.category" 
+        :price="car.resell" 
+        :speed="car.speed"
       />
       <div class="no-result" v-if="filteredCars.length === 0">
         <h1>Aucun résultat ne correspond à votre recherche !</h1>
@@ -51,6 +51,7 @@
 </template>
 
 <script>
+
   export default {
     data() {
       return {
@@ -60,14 +61,15 @@
       }
     },
     async fetch() {
-      this.cars = await fetch(
-        'http://45.9.191.251:5500/car'
-        ).then(res => res.json())
+      this.cars = await this.$axios.$get('https://cardealer.mrsociety404.com/api/car/')
     },
     computed: {
       filteredCars() {
+        if(this.cars.length === 0) {
+          return [];
+        }
         return this.cars.filter( (car) => {
-          return car.Type.toLowerCase().includes(this.category) &&  car.Model.toLowerCase().includes(this.search.toLowerCase())
+          return car.category.toLowerCase().includes(this.category) &&  car.name.toLowerCase().includes(this.search.toLowerCase())
         })
       }
     }

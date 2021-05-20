@@ -80,7 +80,6 @@
     display: flex;
     z-index: 1000;
     flex-direction: column;
-    justify-content: start;
     align-items: center;
     background: #f8f8f8;
     transition: all .3s ;
