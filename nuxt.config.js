@@ -1,9 +1,5 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-<<<<<<< HEAD
-
-=======
->>>>>>> 794efe167ddadc74c7d9a017732ed13f44a5fc63
   // router: {
   //   base: '/cardealer/'
   // },
