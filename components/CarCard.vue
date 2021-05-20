@@ -2,7 +2,7 @@
   <div class="carCard">
     <section class="image">
       <img :src="img" alt="car">
-      <p class="price">$ {{price}}</p>
+      <p class="price">$ {{price.toLocalString()}}</p>
     </section>
     <section class="info">
       <h2 class="name"> {{name}} </h2>
