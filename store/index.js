@@ -1,13 +1,11 @@
 export const state = () => ({
-  
-  jobState: false,
-  
+  jobState: false, 
 })
 
 export const mutations = {
   
   changeJobState(state) {
     state.jobState = !state.jobState
-  }
+  },
 
 }

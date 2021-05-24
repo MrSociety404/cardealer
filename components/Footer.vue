@@ -16,4 +16,7 @@
   font-size: 12px;
   letter-spacing: .2em;
 }
+.footer p {
+  color: var(--black);
+}
 </style>

@@ -1,9 +1,8 @@
 <template>
   <div class="container">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <Nav />
+    <AdminNav />
     <Nuxt />
-    <Footer class="footer" />
   </div>
 </template>
 
@@ -49,11 +48,6 @@ html {
   flex-direction: column;
   height: 100vh;
 }
-.footer {
-  margin: auto;
-  margin-bottom: 1em;
-}
-
 input:focus, textarea:focus, select:focus{
   outline: none;
 }

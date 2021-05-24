@@ -50,7 +50,7 @@
         <img src="@/assets/image/no-job.png" alt="not-found">
         <p>Les recrutements sont fermés pour le moment.<br>Lors de leurs réouvertures, une annonce publique sur les cannaux de la concession sera effectuée !<br><br>A bientôt dans nos locaux !</p>
 
-        <NuxtLink to="/">ACCUEIL</NuxtLink>
+        <vs-button to="/" border size="xl" >Accueil</vs-button>
       </div>
     </div>
   </div>
