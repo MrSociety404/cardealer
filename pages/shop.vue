@@ -127,7 +127,7 @@ export default {
       return this.cars.filter((car) => {
         return (
           car.category.toLowerCase().includes(this.selectCategory === 'all' ? '' : this.selectCategory) &&
-          car.name.toLowerCase().includes(this.search.toLowerCase())
+          car.label.toLowerCase().includes(this.search.toLowerCase())
         );
       });
     },
