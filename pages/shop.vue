@@ -20,7 +20,7 @@
       <section class="catalogue">
           <vs-card v-for="car in filteredCars" :key="car._id" type="1">
             <template #title>
-              <h3> {{car.name}} </h3>
+              <h3> {{car.label}} </h3>
             </template>
             <template #img>
               <img :src="car.image" alt="">
