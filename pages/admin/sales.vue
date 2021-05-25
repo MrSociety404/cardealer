@@ -13,6 +13,7 @@
             <vs-th>Voiture</vs-th>
             <vs-th sort @click="sales = $vs.sortData($event ,sales, 'seller')">Vendeur</vs-th>
             <vs-th sort @click="sales = $vs.sortData($event ,sales, 'price')">Prix</vs-th>
+            <vs-th sort @click="sales = $vs.sortData($event ,sales, 'price')">Bénéfices</vs-th>
           </vs-tr>
         </template>
         <template #tbody>
@@ -24,7 +25,8 @@
             <vs-td> {{tr.client}} </vs-td>
             <vs-td> {{tr.car}} </vs-td>
             <vs-td> {{tr.seller}} </vs-td>
-            <vs-td> $ {{tr.price}} </vs-td>
+            <vs-td> $ {{tr.price.toLocaleString()}} </vs-td>
+            <vs-td> $ {{tr.price.toLocaleString()}} </vs-td>
           </vs-tr>
         </template>
         <template #footer>

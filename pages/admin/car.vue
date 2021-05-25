@@ -6,7 +6,7 @@
     </header>
     <main>
       <h2><span class="bold">{{ cars.length }}</span> Résultats</h2>
-      <vs-table>
+      <vs-table v-if="!$fetchState.pending">
         <template #thead>
           <vs-tr>
             <vs-th sort @click="cars = $vs.sortData($event ,cars, 'name')">Nom</vs-th>
@@ -21,10 +21,11 @@
             :key="i"
             v-for="(tr,i) in $vs.getPage(cars, page, max)"
             :data="tr"
+            @click="activeInfo = !activeInfo"
           >
-            <vs-td> {{tr.name}} </vs-td>
+            <vs-td> {{tr.label}} </vs-td>
             <vs-td> {{tr.category}} </vs-td>
-            <vs-td> {{tr.retail.toLocaleString()}} </vs-td>
+            <vs-td> $ {{tr.retail.toLocaleString()}} </vs-td>
             <vs-td> $ {{tr.resell.toLocaleString()}} </vs-td>
             <vs-td>{{tr.speed}} km/h </vs-td>
           </vs-tr>
@@ -38,16 +39,21 @@
 </template>
 
 <script>
-import {cars} from '@/data/data.js'
   export default {
     layout: 'admin',
     data() {
       return {
         page:1,
         max: 14,
-        cars : cars
+        activeInfo: false,
+        cars :[]
       }
     },
+    async fetch() {
+    this.cars = await this.$axios.$get(
+      "http://localhost:5500/api/admin/cars/"
+    );
+  },
   }
 </script>
 

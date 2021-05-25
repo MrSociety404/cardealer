@@ -3,7 +3,15 @@
     <header>
       <h1><i class='bx bx-user-pin'></i> Recrutement</h1>
       <p class="jobState">
-        Etat des recrutements <vs-switch />
+        Etat des recrutements
+        <vs-switch success v-model="jobState">
+          <template #off>
+              <i class='bx bx-x' ></i>
+          </template>
+          <template #on>
+              <i class='bx bx-check' ></i>
+          </template>
+        </vs-switch>
       </p>   
     </header>
     <main>
@@ -42,6 +50,7 @@
       return {
         page:1,
         max: 14,
+        jobState: false,
         jobs: []
       }
     },

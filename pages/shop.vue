@@ -28,7 +28,8 @@
             <template #text>
               <p>
                 <i class='bx bx-category-alt' ></i>
-                {{ categoryList.find(e => e.value == car.category).label  }}
+               <!-- {{ categoryList.find(e => e.value == car.category) }} -->
+               {{ car.category }}
               </p>
             </template>
             <template #interactions>
@@ -92,7 +93,7 @@ export default {
         },
         {
           value:'vans',
-          label:'van'
+          label:'Van'
         },
         {
           value:'coupes',
@@ -116,7 +117,7 @@ export default {
   },
   async fetch() {
     this.cars = await this.$axios.$get(
-      "https://cardealer.mrsociety404.com/api/car/"
+      "http://localhost:5500/api/cars/"
     );
   },
   computed: {

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="layout">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <Nav />
     <Nuxt />
@@ -44,7 +44,7 @@ html {
   text-decoration: none;
   margin: 0;
 }
-.container {
+.layout {
   display: flex;
   flex-direction: column;
   height: 100vh;
