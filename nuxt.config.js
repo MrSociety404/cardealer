@@ -30,7 +30,7 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: `@/assets/image/miniature.png`,
+        content: 'https://i.imgur.com/SbyyjBY.png'
       },
       {
         hid: 'oh:title',
