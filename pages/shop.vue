@@ -117,7 +117,7 @@ export default {
   },
   async fetch() {
     this.cars = await this.$axios.$get(
-      "http://localhost:5500/api/cars/"
+      "https://cardealer.mrsociety404.com/api/cars"
     );
   },
   computed: {

@@ -51,7 +51,7 @@
     },
     async fetch() {
     this.cars = await this.$axios.$get(
-      "http://localhost:5500/api/admin/cars/"
+      "https://cardealer.mrsociety404.com/api/admin/cars"
     );
   },
   }
