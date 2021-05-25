@@ -133,6 +133,11 @@ export default {
       });
     },
   },
+  head() {
+    return {
+      title: "%s - Shop"
+    }
+  }
 };
 </script>
 

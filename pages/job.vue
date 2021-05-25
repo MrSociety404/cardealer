@@ -61,7 +61,12 @@ import {mapState} from "vuex"
   export default {
     computed: {
       ...mapState(['jobState'])
-    }   
+    },
+    head() {
+      return {
+        title: "%s - Job"
+      }
+    }
   }
 </script>
 
