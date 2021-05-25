@@ -64,7 +64,7 @@ import {mapState} from "vuex"
     },
     head() {
       return {
-        title: "%s - Job"
+        titleTemplate: "%s - Job"
       }
     }
   }

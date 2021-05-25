@@ -135,7 +135,7 @@ export default {
   },
   head() {
     return {
-      title: "%s - Shop"
+      titleTemplate: "%s - Shop"
     }
   }
 };
