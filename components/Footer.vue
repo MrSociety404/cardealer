@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <p>LUXURY MOTORSPORT - 2021 - CGU</p>
+    <p>SUNRISE AUTOS - 2021 - CGU</p>
   </div>
 </template>
 
