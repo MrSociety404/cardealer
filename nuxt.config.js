@@ -30,12 +30,12 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://i.imgur.com/SbyyjBY.png'
+        content: 'https://i.imgur.com/cg9VPxx.png'
       },
       {
         hid: 'oh:title',
         name: 'og:title',
-        content: 'Luxury Motorsport'
+        content: 'Sunrise Autos'
       }
     ],
     link: [
