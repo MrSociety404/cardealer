@@ -34,11 +34,9 @@
       </vs-sidebar-item>
       <template #footer>
         <vs-row justify="space-between">
-          <NuxtLink to="/admin">
-            <vs-button icon >
+            <vs-button icon @click="logout" >
               <i class='bx bx-log-out-circle' ></i>
-            </vs-button>   
-          </NuxtLink>       
+            </vs-button>         
         </vs-row>
       </template>
     </vs-sidebar>
@@ -52,6 +50,12 @@
         active: 'sales'
       }
     },
+    methods: {
+      async logout() {
+        await this.$axios.get('https://cardealer.mrsociety404.com/api/dealers/logout')
+        this.$router.push('/admin')
+      }
+    }
   }
 </script>
 
