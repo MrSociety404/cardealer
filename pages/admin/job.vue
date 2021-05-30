@@ -46,6 +46,7 @@
 <script>
   export default {
     layout: 'admin',
+    middleware:'isAuth',
     data() {
       return {
         page:1,
@@ -54,49 +55,28 @@
         jobs: []
       }
     },
+    mounted() {
+      const loading = this.$vs.loading()
+      this.fetch()
+      loading.close()
+    },
+    methods: {
+      async fetch() {
+        this.$axios.setHeader('Authorization', 'Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYWY1MzVkZmE4ZDgxMWVkY2IxMmE1ZSIsInVzZXJuYW1lIjoiTXJTb2NpZXR5NDA0IiwiaWF0IjoxNjIyMTI3MTcwLCJleHAiOjE2MjIxMzQzNzB9.WBEmpaeP3KC26P5ljL_5qiK8UB_stwHIlDD_0AoFPJE')
+        this.jobs = await this.$axios.$get(
+          "https://cardealer.mrsociety404.com/api/jobs"
+        );
+      },
+    }
   }
 </script>
 
 <style scoped>
-  .nuxt-box {
-    margin-left: 260px;
-  }
-  header {
-    max-width: 90%;
-    margin: auto;
-    padding: 2.5em 0;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(31,93,251,.1);
-  }
-  header h1 {
-    font-weight: normal;
-    display: flex;
-    align-items: center;
-  }
-  header h1 i {
-    font-size: 1.3em;
-    margin-right: .6em;
-  }
-  main {
-    max-width: 90%;
-    margin: auto;
-    padding: 2em 0;
-  }
-  main h2 {
-    font-weight: normal;
-    font-size: 1.2em;
-    margin: 1em 0;
-  }
-  main h2 .bold {
-    font-weight: bold;
-  }
-
-  .jobState {
-    display: flex;
-    align-items: center;
-    justify-content:space-between;
-    width: 250px;
-  }
+.jobState {
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  width: 250px;
+}
 
 </style>

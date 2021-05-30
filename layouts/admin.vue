@@ -51,4 +51,37 @@ html {
 input:focus, textarea:focus, select:focus{
   outline: none;
 }
+.nuxt-box {
+  margin-left: 260px;
+}
+header {
+  max-width: 90%;
+  margin: auto;
+  padding: 2.5em 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(31,93,251,.1);
+}
+header h1 {
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+}
+header h1 i {
+  font-size: 1.3em;
+  margin-right: .6em;
+}
+main {
+  max-width: 90%;
+  margin: auto;
+  padding: 2em 0;
+}
+main h2 {
+  font-weight: normal;
+  font-size: 1.2em;
+  margin: 1em 0;
+}
+main h2 .bold {
+  font-weight: bold;
+}
 </style>

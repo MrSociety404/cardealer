@@ -20,7 +20,7 @@
         </template>
         Voitures
       </vs-sidebar-item>
-      <vs-sidebar-item id="employee" to="/admin/employee">
+      <vs-sidebar-item id="employee" to="/admin/dealer">
         <template #icon>
           <i class='bx bx-briefcase'></i>
         </template>
@@ -62,5 +62,10 @@
 }
 .vs-sidebar__item.hasIcon {
   padding: 15px;
+}
+.vs-sidebar-content.absolute {
+  position: fixed !important;
+  z-index: 9001;
+  height: 100%;
 }
 </style>

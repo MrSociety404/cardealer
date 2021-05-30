@@ -1,12 +1,12 @@
 <template>
-  <div>
-
-  </div>
+  <vs-dialog v-model="active" blur>
+    
+  </vs-dialog>
 </template>
 
 <script>
   export default {
-    layout: 'admin',
+    props: ['active']
   }
 </script>
 

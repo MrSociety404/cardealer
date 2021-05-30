@@ -1,5 +1,6 @@
 export const state = () => ({
-  jobState: false, 
+  jobState: false,
+  session: ''
 })
 
 export const mutations = {
