@@ -1,5 +1,5 @@
 <template>
-  <vs-dialog v-model="active" blur>
+  <vs-dialog v-model="active" blur @click="close()">
     <template #header>
       <h4>Nouveau Vendeur</h4>
     </template>
@@ -127,9 +127,8 @@ export default {
           "un nouvelle employé à été ajouté !",
           "auto"
         );
-        this.fetch();
         this.resetData();
-        this.active = false;
+        this.close()
       } catch (err) {
         this.openNotification(
           null,
@@ -158,6 +157,9 @@ export default {
       this.formData.image = "";
       this.formData.status = "";
     },
+    close() {
+      this.$emit('closeDealer')
+    }
   },
 };
 </script>

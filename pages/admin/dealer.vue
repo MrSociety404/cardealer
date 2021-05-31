@@ -27,7 +27,7 @@
         </template>
       </vs-card>
     </main>
-    <NewDealer :active="active" />
+    <NewDealer :active="active" @closeDealer="closeDealer"/>
   </div>
 </template>
 
@@ -56,6 +56,10 @@ export default {
         console.log(err);
       }
     },
+    closeDealer() {
+      this.active = false,
+      this.fetch()
+    }
   },
 };
 </script>
