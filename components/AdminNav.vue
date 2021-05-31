@@ -64,6 +64,7 @@
         }
       },
       updateNav(newActive) {
+        sessionStorage.removeItem("adminNav")
         sessionStorage.setItem("adminNav", newActive)
       }
     }
