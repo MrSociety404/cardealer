@@ -8,28 +8,29 @@
       <template #logo>
         <img src="@/assets/image/LogoBlackOnly.png" alt="logo">
       </template>
-      <vs-sidebar-item id="sales" to="/admin/sales" @click="updateNav">
+      <vs-sidebar-item id="sales" to="/admin/sales" @click="updateNav(sales)">
         <template #icon>
           <i class='bx bx-dollar-circle' ></i>
         </template>
         Ventes
       </vs-sidebar-item>
-      <vs-sidebar-item id="car" to="/admin/car" @click="updateNav">
+      <vs-sidebar-item id="car" to="/admin/car" @click="updateNav(car)">
         <template #icon>
           <i class='bx bx-car'></i>
         </template>
         Voitures
       </vs-sidebar-item>
-      <vs-sidebar-item id="employee" to="/admin/dealer" @click="updateNav">
+      <vs-sidebar-item id="dealer" to="/admin/dealer" @click="updateNav(dealer)">
         <template #icon>
           <i class='bx bx-briefcase'></i>
         </template>
-        Employées
+        Vendeurs
       </vs-sidebar-item>
-      <vs-sidebar-item id="job" to="/admin/job" @click="updateNav">
+      <vs-sidebar-item id="job" to="/admin/job" @click="updateNav(job)">
         <template #icon>
           <i class='bx bx-user-pin'></i>
         </template>
+        Job
         Job
       </vs-sidebar-item>
       <template #footer>
