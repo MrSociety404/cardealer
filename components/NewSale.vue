@@ -26,7 +26,7 @@
         <vs-option
           :label="dealer.firstname + ' ' + dealer.lastname"
           :value="dealer._id"
-          v-for="dealer in dealers"
+          v-for="dealer in dealers.data"
           :key="dealer._id"
         >
           {{ dealer.firstname }} {{ dealer.lastname }}
