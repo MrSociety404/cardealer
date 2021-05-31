@@ -1,7 +1,7 @@
 <template>
   <vs-dialog v-model="active" blur @close="close()">
     <template #header>
-      <h4>Nouveau Vendeur</h4>
+      <h3>Nouveau Vendeur</h3>
     </template>
 
     <div class="con-form">
@@ -158,6 +158,7 @@ export default {
       this.formData.status = "";
     },
     close() {
+      this.resetData()
       this.$emit('closeDealer')
     }
   },

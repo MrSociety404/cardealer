@@ -34,7 +34,7 @@
         </template>
       </vs-table>
     </main>
-    <NewSale :active="active" />
+    <NewSale :active="active" @closeSale="close" />
     
   </div>
 </template>
@@ -42,7 +42,7 @@
 <script>
   export default {
     layout: 'admin',
-    middleware:'isAuth',
+    // middleware:'isAuth',
     data() {
       return {
         page:1,
@@ -63,6 +63,10 @@
           "https://cardealer.mrsociety404.com/api/sales"
         );
       },
+      close() {
+        this.active = false
+        this.fetch()
+      }
     }
   }
 </script>
