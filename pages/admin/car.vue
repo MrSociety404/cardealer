@@ -36,7 +36,7 @@
             </vs-td>
             <vs-td> {{tr.label}} </vs-td>
             <vs-td> {{tr.category}} </vs-td>
-            <vs-td> $ 0 </vs-td>
+            <vs-td> $ {{tr.resell.toLocaleString()}} </vs-td>
             <vs-td> $ {{tr.resell.toLocaleString()}} </vs-td>
             <vs-td>{{tr.speed}} km/h </vs-td>
 

@@ -151,12 +151,12 @@ export default {
         this.openNotification(
           null,
           "success",
-          "Hmm de l'argent, j'aime ca !",
+          "De l'argent ? j'aime ca !",
           "un nouvelle vente à été enregistré !",
           "auto"
         );
         this.resetData();
-        this.close();
+        this.closeSale();
       } catch (err) {
         this.openNotification(
           null,

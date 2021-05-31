@@ -10,6 +10,7 @@
         <template #thead>
           <vs-tr>
             <vs-th>Client</vs-th>
+            <vs-th>Photo</vs-th>
             <vs-th>Voiture</vs-th>
             <vs-th sort @click="sales = $vs.sortData($event ,sales, 'seller')">Vendeur</vs-th>
             <vs-th sort @click="sales = $vs.sortData($event ,sales, 'price')">Prix</vs-th>
@@ -23,10 +24,15 @@
             :data="tr"
           >
             <vs-td> {{tr.client}} </vs-td>
-            <vs-td> {{tr.car}} </vs-td>
-            <vs-td> {{tr.seller}} </vs-td>
+            <vs-td>  
+              <vs-avatar>
+                <img :src="tr.car.image" alt="car">
+              </vs-avatar>  
+            </vs-td>
+            <vs-td> {{tr.car.label}}</vs-td>
+            <vs-td> {{tr.dealer.firstname + ' ' + tr.dealer.lastname}} </vs-td>
             <vs-td> $ {{tr.price.toLocaleString()}} </vs-td>
-            <vs-td> $ {{tr.price.toLocaleString()}} </vs-td>
+            <vs-td> $ {{(tr.price - tr.car.retail).toLocaleString()}} </vs-td>
           </vs-tr>
         </template>
         <template #footer>
@@ -58,7 +64,6 @@
     },
     methods: {
       async fetch() {
-        this.$axios.setHeader('Authorization', 'Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYWY1MzVkZmE4ZDgxMWVkY2IxMmE1ZSIsInVzZXJuYW1lIjoiTXJTb2NpZXR5NDA0IiwiaWF0IjoxNjIyMTI3MTcwLCJleHAiOjE2MjIxMzQzNzB9.WBEmpaeP3KC26P5ljL_5qiK8UB_stwHIlDD_0AoFPJE')
         this.sales = await this.$axios.$get(
           "https://cardealer.mrsociety404.com/api/sales"
         );
@@ -72,4 +77,10 @@
 </script>
 
 <style scoped>
+.vs-avatar img {
+  width: auto;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+} 
 </style>
