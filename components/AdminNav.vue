@@ -8,25 +8,25 @@
       <template #logo>
         <img src="@/assets/image/LogoBlackOnly.png" alt="logo">
       </template>
-      <vs-sidebar-item id="sales" to="/admin/sales">
+      <vs-sidebar-item id="sales" to="/admin/sales" @click="updateNav">
         <template #icon>
           <i class='bx bx-dollar-circle' ></i>
         </template>
         Ventes
       </vs-sidebar-item>
-      <vs-sidebar-item id="car" to="/admin/car">
+      <vs-sidebar-item id="car" to="/admin/car" @click="updateNav">
         <template #icon>
           <i class='bx bx-car'></i>
         </template>
         Voitures
       </vs-sidebar-item>
-      <vs-sidebar-item id="employee" to="/admin/dealer">
+      <vs-sidebar-item id="employee" to="/admin/dealer" @click="updateNav">
         <template #icon>
           <i class='bx bx-briefcase'></i>
         </template>
         Employées
       </vs-sidebar-item>
-      <vs-sidebar-item id="job" to="/admin/job">
+      <vs-sidebar-item id="job" to="/admin/job" @click="updateNav">
         <template #icon>
           <i class='bx bx-user-pin'></i>
         </template>
@@ -50,10 +50,23 @@
         active: 'sales'
       }
     },
+    mounted() {
+      this.fetchNav()
+    },
     methods: {
       async logout() {
         await this.$axios.get('https://cardealer.mrsociety404.com/api/dealers/logout')
         this.$router.push('/admin')
+      },
+      fetchNav() {
+        if(sessionStorage.getItem("adminNav") === null) {
+          sessionStorage.setItem("adminNav","sales")
+        } else {
+          this.active = sessionStorage.getItem("adminNav")
+        }
+      },
+      updateNav() {
+        sessionStorage.setItem("adminNav",this.active)
       }
     }
   }
