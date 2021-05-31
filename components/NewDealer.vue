@@ -1,5 +1,5 @@
 <template>
-  <vs-dialog v-model="active" blur @click="close()">
+  <vs-dialog v-model="active" blur @close="close()">
     <template #header>
       <h4>Nouveau Vendeur</h4>
     </template>
