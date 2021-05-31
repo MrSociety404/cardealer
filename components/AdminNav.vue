@@ -31,7 +31,6 @@
           <i class='bx bx-user-pin'></i>
         </template>
         Job
-        Job
       </vs-sidebar-item>
       <template #footer>
         <vs-row justify="space-between">
@@ -60,14 +59,12 @@
         this.$router.push('/admin')
       },
       fetchNav() {
-        if(sessionStorage.getItem("adminNav") === null) {
-          sessionStorage.setItem("adminNav","sales")
-        } else {
+        if(sessionStorage.getItem("adminNav") !== null) {
           this.active = sessionStorage.getItem("adminNav")
         }
       },
-      updateNav() {
-        sessionStorage.setItem("adminNav",this.active)
+      updateNav(newActive) {
+        sessionStorage.setItem("adminNav", newActive)
       }
     }
   }
