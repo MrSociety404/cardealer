@@ -35,7 +35,6 @@
 
       <vs-select
         label="Voiture"
-        placeholder="Audi RS3"
         block
         filter
         icon-after
