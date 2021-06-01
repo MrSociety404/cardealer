@@ -25,17 +25,17 @@
       </vs-input>
 
       <vs-input
-        label="retail"
+        label="Retail"
         placeholder="1000"
         type="number"
         block
         icon-after
-        v-model="formData.retaill"
+        v-model="formData.retail"
       >
       </vs-input>
 
       <vs-input
-        label="resell"
+        label="Resell"
         placeholder="2000"
         type="number"
         block
@@ -76,29 +76,16 @@ export default {
       formData: {
         label: "",
         category: "",
-        retail: "",
-        resell: "",
-        speed: "",
+        retail: 0,
+        resell: 0,
+        speed: 0,
         image: "",
       },
     };
   },
   methods: {
-    resetData() {
-      this.formData = {
-        label: "",
-        category: "",
-        retail: "",
-        resell: "",
-        speed: "",
-        image: "",
-      };
-    },
-    close() {
-      this.resetData();
-      this.$emit("closeCar");
-    },
     check() {
+      console.log(this.formData)
       if (
         this.formData.label &&
         this.formData.category &&
@@ -162,6 +149,20 @@ export default {
         text,
         progress,
       });
+    },
+    resetData() {
+      this.formData = {
+        label: "",
+        category: "",
+        retail: "",
+        resell: "",
+        speed: "",
+        image: "",
+      };
+    },
+    closeSale() {
+      this.resetData();
+      this.$emit("closeCar");
     },
   },
 };
