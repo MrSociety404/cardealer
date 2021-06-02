@@ -11,7 +11,7 @@
         <h2>
           <span class="bold">{{ cars.length }}</span> Résultats
         </h2>
-        <vs-input v-model="search" icon-after label-placeholder="recherche">
+        <vs-input v-model="search" icon-after label-placeholder="Recherche">
           <template #icon><i class="bx bx-search-alt"></i></template>
         </vs-input>
       </div>
@@ -50,7 +50,7 @@
             </vs-td>
             <vs-td> {{ tr.label }} </vs-td>
             <vs-td> {{ tr.category }} </vs-td>
-            <vs-td> $ {{ tr.retaill.toLocaleString() }} </vs-td>
+            <vs-td> $ {{ tr.retail.toLocaleString() }} </vs-td>
             <vs-td> $ {{ tr.resell.toLocaleString() }} </vs-td>
             <vs-td>{{ tr.speed }} km/h </vs-td>
 
