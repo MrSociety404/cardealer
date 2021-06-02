@@ -4,7 +4,7 @@
       <h1><i class='bx bx-user-pin'></i> Recrutement</h1>
       <p class="jobState">
         Etat des recrutements
-        <vs-switch success v-model="jobState">
+        <vs-switch success v-model="jobState" @click="toggleJob">
           <template #off>
               <i class='bx bx-x' ></i>
           </template>
@@ -58,15 +58,24 @@
     mounted() {
       const loading = this.$vs.loading()
       this.fetch()
+      this.fetchState()
       loading.close()
     },
     methods: {
       async fetch() {
-        this.$axios.setHeader('Authorization', 'Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYWY1MzVkZmE4ZDgxMWVkY2IxMmE1ZSIsInVzZXJuYW1lIjoiTXJTb2NpZXR5NDA0IiwiaWF0IjoxNjIyMTI3MTcwLCJleHAiOjE2MjIxMzQzNzB9.WBEmpaeP3KC26P5ljL_5qiK8UB_stwHIlDD_0AoFPJE')
-        this.jobs = await this.$axios.$get(
+        this.jobs = await this.$axios.get(
           "https://cardealer.mrsociety404.com/api/jobs"
         );
       },
+      async fetchState() {
+        this.jobState = await this.$axios.get("https://cardealer.mrsociety404.com/api/settings/jobState")
+      },
+      async toggleJob() {
+        const loading = this.$vs.loading()
+        await this.$axios.patch("https://cardealer.mrsociety404.com/api/settings/jobState", {state: !this.jobState})
+        this.fetchState()
+        loading.close()
+      }
     }
   }
 </script>
