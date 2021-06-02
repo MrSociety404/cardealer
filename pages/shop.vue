@@ -2,12 +2,7 @@
   <div class="shop">
     <h1>CATALOGUE</h1>
     <div v-if="!$fetchState.pending">
-      <section class="setting">
-        <vs-input label="Recherche" icon-after v-model="search">
-          <template #icon>
-            <i class='bx bx-search-alt'></i>
-          </template>
-        </vs-input>
+      <section class="setting"> 
         <vs-select v-model="selectCategory" label="Catégorie" placeholder="Tout" class="category-select">
           <vs-option 
             v-for="category in categoryList"
@@ -16,6 +11,11 @@
             :value="category.value"
           >{{ category.label }}</vs-option>
         </vs-select>
+        <vs-input label="Recherche" icon-after v-model="search">
+          <template #icon>
+            <i class='bx bx-search-alt'></i>
+          </template>
+        </vs-input>
       </section>
       <section class="catalogue">
           <vs-card v-for="car in filteredCars" :key="car._id" type="1">
