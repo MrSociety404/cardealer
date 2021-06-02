@@ -51,7 +51,9 @@
       return {
         page:1,
         max: 14,
-        jobState: false,
+        jobState: {
+          state: false
+        },
         jobs: []
       }
     },

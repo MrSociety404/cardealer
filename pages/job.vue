@@ -2,98 +2,176 @@
   <div>
     <div class="form">
       <h1>Recrutement</h1>
-      <form v-if="jobState" action="">
-        <h2>Tous les champs sont obligatoires ! </h2>
+      <div class="formData" v-if="jobState.state">
+        <h2>Tous les champs sont obligatoires !</h2>
 
         <div class="small-input">
           <div>
-            <label for="fname">Prénom</label>
-            <input type="text" name="fname" id="fname">
-          </div> 
+            <label >Prénom Nom</label>
+            <input type="text" placeholder="John Doe" v-model="formData.name" />
+          </div>
 
           <div>
-            <label for="lname">Nom</label>
-            <input type="text" name="lname" id="lname">
+            <label >Téléphone</label>
+            <input type="number" placeholder="5550101" v-model="formData.phone" />
           </div>
         </div>
 
-        <div class="small-input">
-          <div> 
-            <label for="phone">Téléphone</label>
-            <input type="text" name="phone" id="phone">
-          </div> 
+        <label >Expérience professionnelle</label>
+        <textarea
+          
+          v-model="formData.experience"
+          cols="30"
+          rows="5"
+        ></textarea>
 
-          <div> 
-            <label for="sexe">Sexe</label>
-            <select name="sexe" id="sexe">
-              <option value="H">Homme</option>
-              <option value="F">Femme</option>
-            </select>
-          </div> 
-        </div>
+        <label >Disponibilités</label>
+        <textarea
+          
+          v-model="formData.availability"
+          cols="30"
+          rows="5"
+        ></textarea>
 
-        <label for="experience">Expérience professionnelle</label>
-        <textarea name="experience" id="experience" cols="30" rows="5"></textarea>
+        <label >Motivation</label>
+        <textarea 
+          v-model="formData.motivation"
+          cols="30" 
+          rows="5"
+        >
+        </textarea>
 
-        <label for="availability">Disponibilités</label>
-        <textarea name="availability" id="availability" cols="30" rows="5"></textarea>
+        <label >Commentaire pour le recruteur</label>
+        <textarea
+          
+          v-model="formData.comment"
+          cols="30"
+          rows="5"
+        ></textarea>
 
-        <label for="skills">Qualités</label>
-        <textarea name="skills" id="skills" cols="30" rows="5"></textarea>
-
-        <label for="motivation">Motivation</label>
-        <textarea name="motivation" id="motivation" cols="30" rows="5"></textarea>
-
-        <button type="submit" name="submit" @click="send">POSTULER</button>
-      </form>
+        <vs-button size="large" @click="check">POSTULER</vs-button>
+      </div>
       <div v-else class="no-recruit">
-        <img src="@/assets/image/no-job.png" alt="not-found">
-        <p>Les recrutements sont fermés pour le moment.<br>Lors de leurs réouvertures, une annonce publique sur les cannaux de la concession sera effectuée !<br><br>A bientôt dans nos locaux !</p>
+        <img src="@/assets/image/no-job.png" alt="not-found" />
+        <p>
+          Les recrutements sont fermés pour le moment.<br />Lors de leurs
+          réouvertures, une annonce publique sur les cannaux de la concession
+          sera effectuée !<br /><br />A bientôt dans nos locaux !
+        </p>
 
-        <vs-button to="/" border size="xl" >Accueil</vs-button>
+        <vs-button to="/" border size="xl">Accueil</vs-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        jobState: false
+export default {
+  data() {
+    return {
+      jobState: {
+        state: false,
+      },
+      formData: {
+        name: "",
+        phone: "",
+        experience: "",
+        motivation: "",
+        comment: "",
+      },
+    };
+  },
+  mounted() {
+    this.fetchState();
+  },
+  head() {
+    return {
+      titleTemplate: "%s - Job",
+    };
+  },
+  methods: {
+    async fetchState() {
+      this.jobState = await this.$axios.$get(
+        "https://cardealer.mrsociety404.com/api/settings/jobState"
+      );
+    },
+    check() {
+      if (
+        this.formData.name &&
+        this.formData.phone &&
+        this.formData.experience &&
+        this.formData.availability &&
+        this.formData.motivation &&
+        this.formData.comment
+      ) {
+        this.send()
+      } else {
+        this.openNotification(
+          null,
+          "danger",
+          "Une erreur est survenue !",
+          "Veuillez remplir tout les champs obligatoire ( * ) ! ",
+          "auto"
+        );
       }
     },
-    mounted() {
-      this.fetchState()
-    },
-    head() {
-      return {
-        titleTemplate: "%s - Job"
+    async send() {
+      const loading = this.$vs.loading();
+      try {
+        await this.$axios.$post("https://cardealer.mrsociety404.com/api/jobs", {
+          name: this.formData.name,
+          phone: this.formData.phone,
+          experience: this.formData.experience,
+          availability: this.formData.availability,
+          motivation: this.formData.motivation,
+          comment: this.formData.comment,
+        })
+        this.openNotification(
+          null,
+          "success",
+          "Bientot dans concessionnaire ?",
+          "Votre recrutement a été pris en compte !",
+          "auto"
+        );
+      } catch (err) {
+        this.openNotification(
+          null,
+          "danger",
+          "Une erreur est survenue !",
+          err,
+          "auto"
+        );
       }
+      loading.close()
     },
-    methods: {
-      async fetchState() {
-        this.jobState = await this.$axios.$get("https://cardealer.mrsociety404.com/api/settings/jobState")
-      }
-    }
-  }
+    openNotification(position = null, color, title, text, progress) {
+      this.$vs.notification({
+        color,
+        position,
+        title,
+        text,
+        progress,
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>
-  .form {
-  max-width: 800px ;
+.form {
+  max-width: 800px;
   width: 80%;
   margin: auto;
 }
 
-.form form {
+.form .formData {
   display: flex;
   flex-direction: column;
 }
 
 .form h1 {
   text-align: center;
-  letter-spacing: .2em;
+  letter-spacing: 0.2em;
   font-weight: normal;
   margin-bottom: 1em;
 }
@@ -109,11 +187,13 @@
   height: 30px;
 }
 
-.form form select {
+.form .formData select {
   height: 32px;
 }
 
-.form form input, .form form textarea, .form form select {
+.form .formData input,
+.form .formData textarea,
+.form .formData select {
   background: none;
   border: none;
   border-bottom: 2px solid var(--gray);
@@ -121,15 +201,16 @@
   font-size: 1em;
 }
 
-.form form input:hover, .form form textarea:hover {
+.form .formData input:hover,
+.form .formData textarea:hover {
   background: none;
   border: none;
   border-bottom: 2px solid var(--primary);
 }
 
-.form form label {
+.form .formData label {
   font-size: 1em;
-  letter-spacing: .2em;
+  letter-spacing: 0.2em;
   line-height: 20px;
 }
 
@@ -157,7 +238,7 @@
   background: none;
   border: 2px solid var(--gray);
   font-size: 1.2em;
-  letter-spacing: .2em;
+  letter-spacing: 0.2em;
   margin: auto;
   margin-bottom: 2em;
   margin-top: 1em;
@@ -168,14 +249,14 @@
   background: var(--primary);
   color: var(--white);
   border-color: var(--primary);
-  transition: .3s; 
+  transition: 0.3s;
 }
 
 @media screen and (max-width: 850px) {
   .small-input div {
     min-width: 100%;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
   }
 
   .form .small-input {
@@ -184,7 +265,6 @@
     flex-direction: column;
     justify-content: space-between;
   }
-
 }
 
 .no-recruit {
@@ -202,7 +282,7 @@
 .no-recruit p {
   text-align: center;
   color: var(--gray);
-  margin: .5em 0;
+  margin: 0.5em 0;
   font-weight: 500;
 }
 
@@ -213,7 +293,7 @@
   background: none;
   border: 2px solid var(--primary);
   font-size: 1.2em;
-  letter-spacing: .2em;
+  letter-spacing: 0.2em;
   margin: auto;
   margin-bottom: 2em;
   margin-top: 1em;
