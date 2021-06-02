@@ -85,7 +85,6 @@ export default {
   },
   methods: {
     check() {
-      console.log(this.formData)
       if (
         this.formData.label &&
         this.formData.category &&

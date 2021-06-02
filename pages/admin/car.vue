@@ -50,7 +50,7 @@
             </vs-td>
             <vs-td> {{ tr.label }} </vs-td>
             <vs-td> {{ tr.category }} </vs-td>
-            <vs-td> $ {{ tr.resell.toLocaleString() }} </vs-td>
+            <vs-td> $ {{ tr.retaill.toLocaleString() }} </vs-td>
             <vs-td> $ {{ tr.resell.toLocaleString() }} </vs-td>
             <vs-td>{{ tr.speed }} km/h </vs-td>
 
