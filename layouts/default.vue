@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://kit.fontawesome.com/2028433eb8.js" crossorigin="anonymous"></script>
     <Nav />
     <Nuxt />
     <Footer class="footer" />

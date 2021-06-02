@@ -4,7 +4,7 @@
       <h1><i class='bx bx-user-pin'></i> Recrutement</h1>
       <p class="jobState">
         Etat des recrutements
-        <vs-switch success v-model="jobState" @click="toggleJob">
+        <vs-switch success v-model="jobState.state" @click="toggleJob">
           <template #off>
               <i class='bx bx-x' ></i>
           </template>
@@ -63,18 +63,16 @@
     },
     methods: {
       async fetch() {
-        this.jobs = await this.$axios.get(
+        this.jobs = await this.$axios.$get(
           "https://cardealer.mrsociety404.com/api/jobs"
         );
       },
       async fetchState() {
-        this.jobState = await this.$axios.get("https://cardealer.mrsociety404.com/api/settings/jobState")
+        this.jobState = await this.$axios.$get("https://cardealer.mrsociety404.com/api/settings/jobState")
       },
       async toggleJob() {
-        const loading = this.$vs.loading()
         await this.$axios.patch("https://cardealer.mrsociety404.com/api/settings/jobState", {state: !this.jobState})
-        this.fetchState()
-        loading.close()
+        this.jobState = !this.jobState
       }
     }
   }

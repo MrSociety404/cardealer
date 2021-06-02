@@ -57,14 +57,23 @@
 </template>
 
 <script>
-import {mapState} from "vuex"
   export default {
-    computed: {
-      ...mapState(['jobState'])
+    data() {
+      return {
+        jobState: false
+      }
+    },
+    mounted() {
+      this.fetchState()
     },
     head() {
       return {
         titleTemplate: "%s - Job"
+      }
+    },
+    methods: {
+      async fetchState() {
+        this.jobState = await this.$axios.$get("https://cardealer.mrsociety404.com/api/settings/jobState")
       }
     }
   }
