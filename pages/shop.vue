@@ -111,7 +111,10 @@ export default {
           value:'compacts',
           label:'Compactes'
         },
-        
+        {
+          value: 'motorcycles',
+          label: 'Moto'
+        }
       ],
     };
   },
