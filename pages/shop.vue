@@ -2,48 +2,52 @@
   <div class="shop">
     <h1>CATALOGUE</h1>
     <div v-if="!$fetchState.pending">
-      <section class="setting"> 
-        <vs-select v-model="selectCategory" label="Catégorie" placeholder="Tout" class="category-select">
-          <vs-option 
+      <section class="setting">
+        <vs-select
+          v-model="selectCategory"
+          label="Catégorie"
+          placeholder="Tout"
+          class="category-select"
+        >
+          <vs-option
             v-for="category in categoryList"
             :key="category.value"
             :label="category.label"
             :value="category.value"
-          >{{ category.label }}</vs-option>
+            >{{ category.label }}</vs-option
+          >
         </vs-select>
         <vs-input label="Recherche" icon-after v-model="search">
           <template #icon>
-            <i class='bx bx-search-alt'></i>
+            <i class="bx bx-search-alt"></i>
           </template>
         </vs-input>
       </section>
       <section class="catalogue">
-          <vs-card v-for="car in filteredCars" :key="car._id" type="1">
-            <template #title>
-              <h3> {{car.label}} </h3>
-            </template>
-            <template #img>
-              <img :src="car.image" alt="">
-            </template>
-            <template #text>
-              <p>
-                <i class='bx bx-category-alt' ></i>
-               <!-- {{ categoryList.find(e => e.value == car.category) }} -->
-               {{ car.category }}
-              </p>
-            </template>
-            <template #interactions>
-              <vs-button>
-                {{ car.resell.toLocaleString() }} $
-              </vs-button>
-              <vs-button class="btn-chat" shadow primary>
-                <i class="fas fa-tachometer-alt"></i>
-                <span class="span">
-                  {{ car.speed }}
-                </span>
-              </vs-button>
-            </template>
-          </vs-card>
+        <vs-card v-for="car in filteredCars" :key="car._id" type="1">
+          <template #title>
+            <h3>{{ car.label }}</h3>
+          </template>
+          <template #img>
+            <img :src="car.image" alt="" />
+          </template>
+          <template #text>
+            <p>
+              <i class="bx bx-category-alt"></i>
+              <!-- {{ categoryList.find(e => e.value == car.category) }} -->
+              {{ car.category }}
+            </p>
+          </template>
+          <template #interactions>
+            <vs-button> {{ car.resell.toLocaleString() }} $ </vs-button>
+            <vs-button class="btn-chat" shadow primary>
+              <i class="fas fa-tachometer-alt"></i>
+              <span class="span">
+                {{ car.speed }}
+              </span>
+            </vs-button> </template
+          >
+        </vs-card>
         <div class="no-result" v-if="filteredCars.length === 0">
           <h1>Aucun résultat ne correspond à votre recherche !</h1>
         </div>
@@ -61,60 +65,60 @@ export default {
     return {
       cars: [],
       search: "",
-      selectCategory: '',
+      selectCategory: "",
       categoryList: [
         {
           value: "all",
           label: "Tout",
         },
         {
-          value:'super',
-          label:'Super'
+          value: "super",
+          label: "Super",
         },
         {
-          value:'sports',
-          label:'Sports'
+          value: "sports",
+          label: "Sports",
         },
         {
-          value:'import',
-          label:'Importées'
+          value: "import",
+          label: "Importées",
         },
         {
-          value:'offroad',
-          label:'Tout terrain'
+          value: "offroad",
+          label: "Tout terrain",
         },
         {
-          value:'sedans',
-          label:'Sédans'
+          value: "sedans",
+          label: "Sédans",
         },
         {
-          value:'suvs',
-          label:'SUV'
+          value: "suvs",
+          label: "SUV",
         },
         {
-          value:'vans',
-          label:'Van'
+          value: "vans",
+          label: "Van",
         },
         {
-          value:'coupes',
-          label:'Coupées'
+          value: "coupes",
+          label: "Coupées",
         },
         {
-          value:'sportsclassics',
-          label:'Classiques'
+          value: "sportsclassics",
+          label: "Classiques",
         },
         {
-          value:'muscle',
-          label:'Muscle'
+          value: "muscle",
+          label: "Muscle",
         },
         {
-          value:'compacts',
-          label:'Compactes'
+          value: "compacts",
+          label: "Compactes",
         },
         {
-          value: 'motorcycles',
-          label: 'Moto'
-        }
+          value: "motorcycles",
+          label: "Moto",
+        },
       ],
     };
   },
@@ -130,17 +134,20 @@ export default {
       }
       return this.cars.filter((car) => {
         return (
-          car.category.toLowerCase().includes(this.selectCategory === 'all' ? '' : this.selectCategory) &&
-          car.label.toLowerCase().includes(this.search.toLowerCase())
+          car.category
+            .toLowerCase()
+            .includes(
+              this.selectCategory === "all" ? "" : this.selectCategory
+            ) && car.label.toLowerCase().includes(this.search.toLowerCase())
         );
       });
     },
   },
   head() {
     return {
-      titleTemplate: "%s - Shop"
-    }
-  }
+      titleTemplate: "%s - Shop",
+    };
+  },
 };
 </script>
 
